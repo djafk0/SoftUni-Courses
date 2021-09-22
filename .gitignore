@@ -389,3 +389,6 @@ FodyWeavers.xsd
 
 # ZipFiles
 *.zip
+
+# sln
+*.sln
