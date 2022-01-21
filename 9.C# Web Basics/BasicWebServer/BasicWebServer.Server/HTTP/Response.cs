@@ -18,7 +18,6 @@ namespace BasicWebServer.Server.HTTP
 
         public CookieCollection Cookies { get; } = new CookieCollection();
 
-
         public string Body { get; set; }
 
         public override string ToString()

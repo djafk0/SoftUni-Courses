@@ -50,6 +50,7 @@ namespace BasicWebServer.Demo.Controllers
             if (this.Request.Cookies.Any(c => c.Name != BasicWebServer.Server.HTTP.Session.SessionCookieName))
             {
                 var cookieText = new StringBuilder();
+
                 cookieText.AppendLine("<h1>Cookies</h1>");
 
                 cookieText.Append("<table border='1'><tr><th>Name</th><th>Value</th></tr>");
@@ -70,6 +71,7 @@ namespace BasicWebServer.Demo.Controllers
             }
 
             var cookies = new CookieCollection();
+
             cookies.Add("My-Cookie", "My-Value");
             cookies.Add("My-Second-Cookie", "My-Second-Value");
 
@@ -79,6 +81,7 @@ namespace BasicWebServer.Demo.Controllers
         public Response Session()
         {
             string currentDateKey = "CurrentDate";
+
             var sessionExists = this.Request.Session.ContainsKey(currentDateKey);
 
             if (sessionExists)

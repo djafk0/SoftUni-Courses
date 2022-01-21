@@ -14,7 +14,6 @@ namespace BasicWebServer.Server.Responses
             this.Headers.Add(Header.ContentType, ContentType.PlainText);
         }
 
-
         public override string ToString()
         {
             if (File.Exists(this.FileName))

@@ -67,23 +67,6 @@ namespace BasicWebServer.Server
             }
         }
 
-        private static void AddSession(Request request, Response response)
-        {
-            var sessionExists = request.Session.ContainsKey(Session.SessionCurrentDateKey);
-
-            if (!sessionExists)
-            {
-                request.Session[Session.SessionCurrentDateKey] = DateTime.Now.ToString();
-                response.Cookies.Add(Session.SessionCookieName, request.Session.Id);
-            }
-        }
-
-        private async Task WriteResponse(NetworkStream networkStream, Response response)
-        {
-            var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
-            await networkStream.WriteAsync(responseBytes);
-        }
-
         private async Task<string> ReadRequest(NetworkStream networkStream)
         {
             var bufferLength = 1024;
@@ -109,6 +92,23 @@ namespace BasicWebServer.Server
             while (networkStream.DataAvailable);
 
             return requestBuilder.ToString();
+        }
+
+        private static void AddSession(Request request, Response response)
+        {
+            var sessionExists = request.Session.ContainsKey(Session.SessionCurrentDateKey);
+
+            if (!sessionExists)
+            {
+                request.Session[Session.SessionCurrentDateKey] = DateTime.Now.ToString();
+                response.Cookies.Add(Session.SessionCookieName, request.Session.Id);
+            }
+        }
+
+        private async Task WriteResponse(NetworkStream networkStream, Response response)
+        {
+            var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
+            await networkStream.WriteAsync(responseBytes);
         }
     }
 }
